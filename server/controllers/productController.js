@@ -33,9 +33,11 @@ const createProduct = async (req, res) => {
   if(privileges == 1){
     if(title && description && price && image && category){
       try {
+        const contentType = image.substring(image.indexOf(':') + 1, image.indexOf(';'));
         const base64Image = image.split(",")[1];
         const rawImageData = Buffer.from(base64Image, "base64");
-        const newImage = await Image.create({data:rawImageData ,contentType:'image/jpeg'});
+
+        const newImage = await Image.create({data:rawImageData ,contentType});
         const newProduct = await Product.create({
           title,
           description,
@@ -56,7 +58,7 @@ const createProduct = async (req, res) => {
         res.status(500).json({ message: 'Failed to create product' });
       }
     }
-    return res.status(400).json({message: "Wszystkie dane wejściowe są wymagane"});
+    return res.status(400).json({message: "All input is required"});
   }
   return res.status(403).json({ message: "Access denied" });
 }
@@ -84,13 +86,16 @@ const updateProduct = async (req, res) => {
   const { id } = req.params
   if(privileges == 1){
     try {
+      let newImage;
       if(image.includes('base64')){
+        const contentType = image.substring(image.indexOf(':') + 1, image.indexOf(';'));
         const product = await Product.findOne({_id: id})
         const base64Image = image.split(",")[1];
         const rawImageData = Buffer.from(base64Image, "base64");
-        await Image.findOneAndUpdate({_id: product.image },{data:rawImageData ,contentType:'image/jpeg'});
+        await Image.findOneAndRemove({_id: product.image });
+        newImage = await Image.create({data:rawImageData ,contentType});
       }
-      const updatedProduct = await Product.findOneAndUpdate({ _id: id }, {title, description, price, category})
+      const updatedProduct = await Product.findOneAndUpdate({ _id: id }, {title, description, image: newImage._id, price, category})
       return res.status(201).json(updatedProduct);
     } catch (err) {
       console.error(err);

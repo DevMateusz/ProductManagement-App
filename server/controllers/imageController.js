@@ -4,7 +4,7 @@ const getImage = async (req, res) => {
   const { id } = req.params
   try {
     const image = await Image.findOne({ _id: id })
-    res.contentType('image/jpeg')
+    res.contentType(image.contentType)
     res.send(image.data);
   } catch (err) {
     console.error(err);

@@ -8,9 +8,10 @@ const createProduct = async (req, res) => {
       try {
         let newImage;
         if(image.includes('base64')){
+          const contentType = image.substring(image.indexOf(':') + 1, image.indexOf(';'));
           const base64Image = image.split(",")[1];
           const rawImageData = Buffer.from(base64Image, "base64");
-          newImage = await Image.create({data:rawImageData ,contentType:'image/jpeg'});
+          newImage = await Image.create({data:rawImageData ,contentType});
         }
         const newUnverifiedProduct = await UnverifiedProduct.create({
           title,
