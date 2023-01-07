@@ -1,6 +1,6 @@
 # Surveys Fullstack Application
 
-An application for publishing, editing, deleting and viewing user posts. Users can like or dislike each post, as well as add favorite publishers to their watch list. In addition, users can sort posts in 6 different ways. Non-logged-in users are limited to 3 sorting options. They cannot create, like posts. They cannot add to the watch list.
+A product management application, it has two roles of user and administrator. The user can only view and send changes for confirmation, while the administrator can view, create, delete, edit and confirm changes created by users.
 
 
 ## Tech Stack
