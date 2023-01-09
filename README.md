@@ -1,4 +1,4 @@
-# Surveys Fullstack Application
+# Product Management Fullstack Application
 
 A product management application, it has two roles of user and administrator. The user can only view and send changes for confirmation, while the administrator can view, create, delete, edit and confirm changes created by users.
 
