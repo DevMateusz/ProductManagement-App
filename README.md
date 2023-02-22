@@ -24,4 +24,14 @@ A product management application, it has two roles of user and administrator. Th
 ## Demo
 due to the fact that the demo runs on free hosting the first time you have to wait a while for the server to turn on.
 
+### Test accounts
+**Admin:**
+  email: admin@admin.com
+  password: admin
+ 
+**User:**
+  email: user@user.com
+  hasło: User123
+
+
 https://productmanagement-app.onrender.com
