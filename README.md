@@ -26,12 +26,12 @@ due to the fact that the demo runs on free hosting the first time you have to wa
 
 ### Test accounts
 **Admin:**
-  email: admin@admin.com
+  email: admin@admin.com,
   password: admin
  
 **User:**
-  email: user@user.com
-  hasło: User123
+  email: user@user.com,
+  password: User123
 
 
 https://productmanagement-app.onrender.com
