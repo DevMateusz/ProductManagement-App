@@ -44,9 +44,6 @@ const createProduct = async (req, res) => {
           image: newImage._id,
           category,
         })
-        await Image.updateOne({_id: newImage._id}, {
-          productID: newProduct._id, 
-        })
         if (newProduct) {
           return res.status(201).json(newProduct);
         } else {
