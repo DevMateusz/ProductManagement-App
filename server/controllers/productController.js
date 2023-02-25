@@ -1,6 +1,5 @@
 const Product = require('../model/Product');
 const Image = require('../model/Image');
-const jpegJs = require("jpeg-js");
 
 
 const getProducts = async (req, res) => {
@@ -95,7 +94,7 @@ const updateProduct = async (req, res) => {
         await Image.findOneAndRemove({_id: product.image });
         newImage = await Image.create({data:rawImageData ,contentType});
       }
-      const updatedProduct = await Product.findOneAndUpdate({ _id: id }, {title, description, image: newImage._id, price, category})
+      const updatedProduct = await Product.findOneAndUpdate({ _id: id }, {title, description, image: image.includes('base64') ? newImage._id : image.split('/').pop(), price, category})
       return res.status(201).json(updatedProduct);
     } catch (err) {
       console.error(err);
